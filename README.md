@@ -4,6 +4,14 @@ An installer for arch that is meant to be minimal and reasonably flexible, may i
 
 This project is meant to be my personal installer, and also is meant to teach me bit with git.
 
+# Usage
+
+Its simple, just run sudo ./mykyosinstaller and answer few questions.
+
+# Requirements
+
+pacstrap, filesystem tools.
+
 # Attribution
 
 This project includes [CachyOS-Settings](https://github.com/CachyOS/CachyOS-Settings) 
