@@ -32,7 +32,7 @@ echo "2) Yes"
 read -p "Enter your choice [1-2]: " format_choice
 
 # Get the desired desktop environment (e.g., gnome, kde, xfce4)
-read -p "Enter the desired desktop environment(in terms of package count gnome>kde>mate>xfce>lxqt>none>mini>pico): " desktop_environment
+read -p "Enter the desired desktop environment(in terms of package count gnome>kde>mate>xfce>lxqt>none>mini>pico, or myky for myky experience): " desktop_environment
 
 read -p "Enter additional packages: " adpackages
 
