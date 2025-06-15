@@ -1,9 +1,16 @@
 install_configs() {
     print_step "Installing system configurations..."
-
     # Copy system-wide configurations
-    if [[ -d "./CachyOS-Settings" ]]; then
-        cp -r ./CachyOS-Settings/* "$INSTALL_POINT/"
+    if [[ -d "./cachyos-settings" ]]; then
+        # Only copy directories from CachyOS-Settings, ignore root-level files
+        for item in ./cachyos-settings/*/; do
+            if [[ -d "$item" ]]; then
+                # Get the directory name without the path
+                dirname=$(basename "$item")
+                echo "Copying directory: $dirname"
+                cp -r "$item" "$INSTALL_POINT/"
+            fi
+        done
     else
         echo "Warning: CachyOS-Settings directory not found, skipping system configs"
     fi
@@ -11,13 +18,10 @@ install_configs() {
     # Copy user-specific configurations
     if [[ -d "./home" ]]; then
         print_step "Installing user configurations for $username..."
-
         # Ensure the user's home directory exists
         mkdir -p "$INSTALL_POINT/home/$username"
-
         # Copy the files
         rsync -a ./home/ "$INSTALL_POINT/home/$username/"
-
         # Fix ownership of the copied files
         arch-chroot "$INSTALL_POINT" chown -R "$username:$username" "/home/$username"
     else

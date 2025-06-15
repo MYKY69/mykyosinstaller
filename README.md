@@ -2,6 +2,8 @@
 
 An installer for arch that is meant to be minimal and reasonably flexible, may include warcrimes in bash scripts.
 
+This project is meant to be my personal installer, and also is meant to teach me bit with git.
+
 # Attribution
 
 This project includes [CachyOS-Settings](https://github.com/CachyOS/CachyOS-Settings) 
