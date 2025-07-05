@@ -6,7 +6,19 @@ This project is meant to be my personal installer, and also is meant to teach me
 
 # Usage
 
-Its simple, just run sudo ./mykyosinstaller and answer few questions.
+1.  Boot into a CachyOS live environment. Pure Arch won't work.
+2.  Partition your drives manually using a tool like `cfdisk` or `gparted`. This script does not handle partitioning.
+    *   **Note on partitioning:** For the boot partition, 80MB is the bare minimum, but 512MB or more is recommended. The script will reformat your chosen root partition, so the filesystem you format it with beforehand doesn't matter. You will be asked if you want to format the boot partition. A separate home partition will only be mounted, not formatted.
+3.  Clone this repo:
+    ```bash
+    git clone https://github.com/MYKY69/mykyosinstaller.git
+    cd mykyosinstaller
+    ```
+4.  Run the script:
+    ```bash
+    sudo ./mykyosinstaller.sh
+    ```
+5.  Answer the questions. The script will ask you to specify which partitions to use.
 
 # Requirements
 
