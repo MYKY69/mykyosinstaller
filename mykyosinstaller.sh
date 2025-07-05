@@ -5,7 +5,6 @@ LOCALE="en_US.UTF-8"
 KEYMAP="cz-qwertz"
 SWAPPINESS="100"
 KERNEL_PARAMS="mem_sleep_default=deep nowatchdog"
-CRYPTROOT_NAME=$HOSTNAME
 INSTALL_POINT="/archinstaller"
 BTRFS_MOUNT_OPTIONS="autodefrag,noatime,compress=zstd:3,space_cache=v2,ssd,discard=async,clear_cache"
 BCACHEFS_MOUNT_OPTIONS="compression=none,background_compression=zstd:7,journal_flush_delay=1000,fsync_delay=1000"
@@ -38,6 +37,7 @@ read -p "Enter the desired desktop environment(in terms of package count gnome>k
 read -p "Enter additional packages: " adpackages
 
 read -p "Enter desired hostname: " HOSTNAME
+CRYPTROOT_NAME=$HOSTNAME
 
 # Get the username for the new user
 read -p "Enter the username for the new user: " username
