@@ -5,13 +5,14 @@ LOCALE="en_US.UTF-8"
 KEYMAP="cz-qwertz"
 SWAPPINESS="100"
 KERNEL_PARAMS="mem_sleep_default=deep nowatchdog"
-CRYPTROOT_NAME="mykyos"
+CRYPTROOT_NAME=$HOSTNAME
 INSTALL_POINT="/archinstaller"
 BTRFS_MOUNT_OPTIONS="autodefrag,noatime,compress=zstd:3,space_cache=v2,ssd,discard=async,clear_cache"
 BCACHEFS_MOUNT_OPTIONS="compression=none,background_compression=zstd:7,journal_flush_delay=1000,fsync_delay=1000"
 F2FS_MOUNT_OPTIONS="compress_algorithm=zstd:4,atgc,gc_merge,noatime,flush_merge,extent_cache,mode=adaptive,active_logs=6,checkpoint_merge,fsync_mode=nobarrier,discard,age_extent_cache"
-F2FS_FORMAT_FEATURES="compression,extra_attr,inline_xattr,inline_data,inline_dentry"
+F2FS_FORMAT_FEATURES="compression"
 EXT4_MOUNT_OPTIONS="noatime,commit=60,barrier=0,data=writeback"
+ENABLE_LUKS_TRIM="yes"
 
 # Arch Linux Installation Script - Information Gathering
 lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL
@@ -118,6 +119,10 @@ case $filesystem_choice in
     filesystem="ext4"
     ;;
 esac
+
+if [[ "$filesystem" == "f2fs" ]]; then
+    KERNEL_PARAMS="$KERNEL_PARAMS rootflags=atgc"
+fi
 
 # Encryption Selection
 echo ""
@@ -231,4 +236,4 @@ else
 fi
 
 sync
-umount -R $INSTALL_POINT
+echo drive write is synced, it may be safe to remove now but its still recommended to unmount, but not required. use this time to check fstab for errors.

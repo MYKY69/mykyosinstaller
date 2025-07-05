@@ -1,0 +1,3 @@
+# /etc/udev/rules.d/60-all-disks-runtime-pm.rules
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", \
+  RUN+="/bin/sh -c 'echo auto > /sys/block/$name/device/power/control'"
