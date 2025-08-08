@@ -355,6 +355,7 @@ alias ll='ls -la'
 alias grep='grep --color=auto'
 alias ip='ip -color=auto'
 # alias sudo='sudo-rs'
+# compdef sudo-rs=sudo
 
 # Add colors to man pages
 export LESS_TERMCAP_mb=$'\e[1;32m'
