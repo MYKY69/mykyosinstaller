@@ -255,6 +255,9 @@ if [ "$encryption" = yes ]; then
     elif [ "$filesystem" = "f2fs" ]; then
         sed -i 's/^HOOKS=.*/HOOKS=(base systemd keyboard keymap modconf block sd-encrypt filesystems fsck autodetect microcode)/' /etc/mkinitcpio.conf
         sed -i 's/^MODULES=.*/MODULES=(f2fs)/' /etc/mkinitcpio.conf
+    elif [ "$filesystem" = "ext4" ]; then
+        sed -i 's/^HOOKS=.*/HOOKS=(base systemd keyboard keymap modconf block sd-encrypt filesystems fsck autodetect microcode)/' /etc/mkinitcpio.conf
+        sed -i 's/^MODULES=.*/MODULES=(ext4)/' /etc/mkinitcpio.conf
     fi
 else
     if [ "$filesystem" = "btrfs" ]; then
@@ -266,6 +269,9 @@ else
     elif [ "$filesystem" = "f2fs" ]; then
         sed -i 's/^HOOKS=.*/HOOKS=(base systemd keyboard keymap modconf block filesystems fsck autodetect microcode)/' /etc/mkinitcpio.conf
         sed -i 's/^MODULES=.*/MODULES=(f2fs)/' /etc/mkinitcpio.conf
+    elif [ "$filesystem" = "ext4" ]; then
+        sed -i 's/^HOOKS=.*/HOOKS=(base systemd keyboard keymap modconf block filesystems fsck autodetect microcode)/' /etc/mkinitcpio.conf
+        sed -i 's/^MODULES=.*/MODULES=(ext4)/' /etc/mkinitcpio.conf
     fi
 fi
 mkinitcpio -P
