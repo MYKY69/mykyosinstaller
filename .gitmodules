@@ -1,0 +1,3 @@
+[submodule "cachyos-settings"]
+	path = cachyos-settings
+	url = https://github.com/MYKY69/CachyOS-Settings
