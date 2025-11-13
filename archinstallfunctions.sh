@@ -162,7 +162,7 @@ mount_partitions() {
 
 install_base_system() {
     # Base packages including the chosen kernel and base-devel
-    base_packages="base base-devel dhcpcd $kernel_package power-profiles-daemon pacman nano git sudo linux-firmware efibootmgr networkmanager bluez bluez-utils htop fastfetch wireplumber git mkinitcpio reflector zsh zsh-theme-powerlevel10k cachyos-rate-mirrors gamescope-session-git"
+    base_packages="base base-devel dhcpcd $kernel_package power-profiles-daemon pacman nano git sudo linux-firmware efibootmgr networkmanager bluez bluez-utils htop fastfetch wireplumber git mkinitcpio reflector zsh zsh-theme-powerlevel10k cachyos-rate-mirrors irqbalance"
 
     # Additional packages based on the chosen filesystem
     case $filesystem in
@@ -180,7 +180,7 @@ install_base_system() {
     # Desktop environment packages
     case $desktop_environment in
         "myky")
-            base_packages="$base_packages cachyos-gaming-meta steam sddm xorg wayland plasma sddm konsole dolphin octopi paru htop neofetch konsole dolphin cmake make partitionmanager $adpackages"
+            base_packages="$base_packages sddm xorg wayland plasma sddm konsole dolphin octopi paru htop neofetch konsole dolphin cmake make partitionmanager ark  $adpackages"
             ;;
         "gnome")
             base_packages="$base_packages sddm gnome $adpackages"

@@ -1,5 +1,5 @@
 #!/bin/bash
-TCP_CONGESTION_CONTROL=yeah
+TCP_CONGESTION_CONTROL=scalable
 TIMEZONE="Europe/Prague"
 LOCALE="en_US.UTF-8"
 KEYMAP="cz-qwertz"
@@ -84,7 +84,7 @@ echo "Choose a kernel:"
 echo "1. linux"
 echo "2. linux-zen"
 echo "3. linux-cachyos-bore"
-echo "4. linux-cachyos-bore-lto (V3 or above required)"
+echo "4. linux-cachyos-bore-lto (V3 or above required, may not play nice with zen cpus, use bore in that case.)"
 read -p "Enter the number of your chosen kernel: " kernel_choice
 
 # Determine the kernel package name based on user choice
@@ -102,10 +102,10 @@ esac
 # Filesystem Selection
 echo ""
 echo "Choose a filesystem:"
-echo "1. ext4 (standard, reliable)"
+echo "1. ext4 (currently fastest, recommended)"
 echo "2. btrfs (terminator, cant kill)"
-echo "3. f2fs (fastest)"
-echo "4. bcachefs (flexible af)"
+echo "3. f2fs (flash memory optimiued)"
+echo "4. bcachefs (will be removed soon)"
 read -p "Enter the number of your chosen filesystem: " filesystem_choice
 
 # Determine the filesystem based on user choice
@@ -158,7 +158,7 @@ echo "1. systemd-boot (simpler, faster)"
 echo "2. GRUB efi (more features, supports multiple OSes)"
 echo "3. GRUB efi 32bit (more features, supports multiple OSes, for cursed 32bit efi computers with 64bit cpus, like intel atom netbooks)"
 echo "4. GRUB bios (more features, supports multiple OSes)"
-read -p "Enter the number of your chosen bootloader (1 or 2): " bootloader_choice
+read -p "Enter the number of your chosen bootloader (1-4): " bootloader_choice
 
 # Determine bootloader type
 case $bootloader_choice in
