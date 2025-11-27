@@ -235,13 +235,9 @@ cat > /etc/hosts <<EOL
 127.0.1.1   $HOSTNAME.localdomain $HOSTNAME
 EOL
 
-# Localization
-print_step "Setting up localization..."
-echo "$LOCALE UTF-8" >> /etc/locale.gen
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-echo "LANG=$LOCALE" > /etc/locale.conf
+# locale-gen and console keymap
 echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf
+locale-gen
 
 # Initramfs configuration
 print_step "Configuring initramfs..."
