@@ -235,9 +235,17 @@ cat > /etc/hosts <<EOL
 127.0.1.1   $HOSTNAME.localdomain $HOSTNAME
 EOL
 
-# locale-gen and console keymap
+# setup locales and console keymap
 echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf
+
+# Uncomment the locale dynamically using the variable
+sed -i "s/^#$LOCALE UTF-8/$LOCALE UTF-8/" /etc/locale.gen
+
+# Generate it
 locale-gen
+
+# Set the persistent configuration
+echo "LANG=$LOCALE" > /etc/locale.conf
 
 # Initramfs configuration
 print_step "Configuring initramfs..."
