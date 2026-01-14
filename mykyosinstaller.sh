@@ -81,7 +81,7 @@ esac
 # Kernel Selection
 echo ""
 echo "Choose a kernel:"
-echo "1. linux"
+echo "1. linux-cachyos"
 echo "2. linux-zen"
 echo "3. linux-cachyos-bore"
 echo "4. linux-cachyos-bore-lto (V3 or above required, may not play nice with zen cpus, use bore in that case.)"
@@ -89,7 +89,7 @@ read -p "Enter the number of your chosen kernel: " kernel_choice
 
 # Determine the kernel package name based on user choice
 case $kernel_choice in
-  1) kernel_package="linux" ;;
+  1) kernel_package="linux-cachyos" ;;
   2) kernel_package="linux-zen" ;;
   3) kernel_package="linux-cachyos-bore" ;;
   4) kernel_package="linux-cachyos-bore-lto" ;;
