@@ -57,21 +57,19 @@ echo "Which pacman configuration would you like to use?"
 echo "1. Local config"
 echo "2. local cache"
 echo "3. Local cache and config"
-echo "4. vanilla.conf"
-echo "5. cachyV2.conf"
-echo "6. cachyV3.conf"
-echo "7. cachyV4.conf"
-read -p "Enter your choice (1-7): " pacman_config_choice
+echo "4. cachyV2.conf"
+echo "5. cachyV3.conf"
+echo "6. cachyV4.conf"
+read -p "Enter your choice (1-6): " pacman_config_choice
 
 # Determine pacman config
 case $pacman_config_choice in
   1) pacman_config="-P" ;;
   2) pacman_config="-c" ;;
   3) pacman_config="-P -c" ;;
-  4) pacman_config="-C ./pacmanconf/vanilla.conf" ;;
-  5) pacman_config="-C ./pacmanconf/cachyV2.conf" ;;
-  6) pacman_config="-C ./pacmanconf/cachyV3.conf" ;;
-  7) pacman_config="-C ./pacmanconf/cachyV4.conf" ;;
+  4) pacman_config="-C ./pacmanconf/cachyV2.conf" ;;
+  5) pacman_config="-C ./pacmanconf/cachyV3.conf" ;;
+  6) pacman_config="-C ./pacmanconf/cachyV4.conf" ;;
   *)
     echo "Invalid choice. Using default pacman configuration."
     pacman_config=""
@@ -158,7 +156,8 @@ echo "1. systemd-boot (simpler, faster)"
 echo "2. GRUB efi (more features, supports multiple OSes)"
 echo "3. GRUB efi 32bit (more features, supports multiple OSes, for cursed 32bit efi computers with 64bit cpus, like intel atom netbooks)"
 echo "4. GRUB bios (more features, supports multiple OSes)"
-read -p "Enter the number of your chosen bootloader (1-4): " bootloader_choice
+echo "5. GRUB efi signed shim (Secure Boot)"
+read -p "Enter the number of your chosen bootloader (1-5): " bootloader_choice
 
 # Determine bootloader type
 case $bootloader_choice in
@@ -166,13 +165,14 @@ case $bootloader_choice in
   2) bootloader="grub" ;;
   3) bootloader="grub32bitefi" ;;
   4) bootloader="grub-bios" ;;
+  5) bootloader="grub-signed-shim" ;;
   *)
     echo "Invalid choice. Defaulting to systemd-boot."
     bootloader="systemd-boot"
     ;;
 esac
 
-if [[ "$bootloader" == "grub" || "$bootloader" == "grub32bitefi" ]]; then
+if [[ "$bootloader" == "grub" || "$bootloader" == "grub32bitefi" || "$bootloader" == "grub-signed-shim" ]]; then
     echo "GRUB bootloader detected. Choose installation mode:"
     echo "1) Install with --removable flag"
     echo "2) Install normally (no --removable)"
@@ -231,6 +231,8 @@ elif [ "$bootloader" = "grub32bitefi" ]; then
     install_grubcursed
 elif [ "$bootloader" = "grub-bios" ]; then
     install_grub_bios
+elif [ "$bootloader" = "grub-signed-shim" ]; then
+    install_grub_signed_shim
 else
     sysdboot
 fi
