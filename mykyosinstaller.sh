@@ -10,7 +10,7 @@ BTRFS_MOUNT_OPTIONS="autodefrag,noatime,compress=zstd:3,space_cache=v2,ssd,disca
 BCACHEFS_MOUNT_OPTIONS="compression=none,background_compression=zstd:7,journal_flush_delay=1000,fsync_delay=1000"
 F2FS_MOUNT_OPTIONS="compress_algorithm=zstd:4,atgc,gc_merge,noatime,flush_merge,extent_cache,mode=adaptive,active_logs=6,checkpoint_merge,fsync_mode=nobarrier,discard,age_extent_cache"
 F2FS_FORMAT_FEATURES="compression"
-EXT4_MOUNT_OPTIONS="noatime,commit=60,barrier=0,data=writeback"
+EXT4_MOUNT_OPTIONS="noatime,commit=60,barrier=0"
 ENABLE_LUKS_TRIM="yes"
 
 # Arch Linux Installation Script - Information Gathering
