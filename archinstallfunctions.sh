@@ -117,7 +117,7 @@ format_partitions() {
             ;;
         "f2fs")
             print_step "Formatting root partition $root_device as f2fs with options $F2FS_FORMAT_FEATURES..."
-            mkfs.f2fs -f -o "$F2FS_FORMAT_FEATURES" "$root_device"
+            mkfs.f2fs -f -O "$F2FS_FORMAT_FEATURES" "$root_device"
             ;;
         "bcachefs")
             print_step "Formatting root partition $root_device as bcachefs..."

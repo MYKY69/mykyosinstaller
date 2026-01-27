@@ -8,8 +8,8 @@ KERNEL_PARAMS="mem_sleep_default=deep nowatchdog"
 INSTALL_POINT="/archinstaller"
 BTRFS_MOUNT_OPTIONS="autodefrag,noatime,compress=zstd:3,space_cache=v2,ssd,discard=async,clear_cache"
 BCACHEFS_MOUNT_OPTIONS="compression=none,background_compression=zstd:7,journal_flush_delay=1000,fsync_delay=1000"
-F2FS_MOUNT_OPTIONS="compress_algorithm=zstd:4,atgc,gc_merge,noatime,flush_merge,extent_cache,mode=adaptive,active_logs=6,checkpoint_merge,fsync_mode=nobarrier,discard,age_extent_cache"
-F2FS_FORMAT_FEATURES="compression"
+F2FS_MOUNT_OPTIONS="defaults,noatime,lazytime,discard,flush_merge,mode=adaptive,compress_algorithm=zstd:1,compress_cache,compress_extension=txt,compress_extension=log,compress_extension=md,compress_extension=c,compress_extension=h,compress_extension=cpp,compress_extension=hpp,compress_extension=py,compress_extension=sh,compress_extension=json,compress_extension=xml,compress_extension=yaml,compress_extension=toml,compress_extension=rs,compress_extension=go,compress_extension=java,compress_extension=js,compress_extension=ts,compress_extension=css,compress_extension=html"
+F2FS_FORMAT_FEATURES="extra_attr,inode_checksum,sb_checksum,compression"
 EXT4_MOUNT_OPTIONS="noatime,commit=60,barrier=0"
 ENABLE_LUKS_TRIM="yes"
 
@@ -102,9 +102,9 @@ esac
 # Filesystem Selection
 echo ""
 echo "Choose a filesystem:"
-echo "1. ext4 (currently fastest, recommended)"
+echo "1. ext4 (recommended)"
 echo "2. btrfs (terminator, cant kill)"
-echo "3. f2fs (flash memory optimiued)"
+echo "3. f2fs (flash memory optimized, recommended)"
 echo "4. bcachefs (will be removed soon)"
 read -p "Enter the number of your chosen filesystem: " filesystem_choice
 
