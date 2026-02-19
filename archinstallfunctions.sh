@@ -316,8 +316,17 @@ kernel.split_lock_mitigate=0
 net.core.rmem_max = 16777216
 net.core.wmem_max = 16777216
 net.ipv4.tcp_congestion_control = $TCP_CONGESTION_CONTROL
+net.core.default_qdisc = cake
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_mtu_probing = 1
+net.ipv4.tcp_notsent_lowat = 16384
+net.ipv4.tcp_ecn = 1
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_tw_reuse = 1
+
+# Sched bias to throughput and efficiency
+kernel.sched_util_clamp_min = 0
+kernel.sched_cfs_bandwidth_slice_us = 50000
 
 # File system and app improvements
 fs.file-max = 2097152

@@ -1,5 +1,5 @@
 #!/bin/bash
-TCP_CONGESTION_CONTROL=scalable
+TCP_CONGESTION_CONTROL=nv
 TIMEZONE="Europe/Prague"
 LOCALE="en_US.UTF-8"
 KEYMAP="cz-qwertz"
