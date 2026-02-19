@@ -102,7 +102,7 @@ esac
 # Filesystem Selection
 echo ""
 echo "Choose a filesystem:"
-echo "1. ext4 (recommended)"
+echo "1. ext4 (the universal, recommended)"
 echo "2. btrfs (terminator, cant kill)"
 echo "3. f2fs (flash memory optimized, recommended)"
 echo "4. bcachefs (will be removed soon)"
