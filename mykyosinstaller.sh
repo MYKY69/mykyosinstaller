@@ -124,6 +124,10 @@ if [[ "$filesystem" == "f2fs" ]]; then
     KERNEL_PARAMS="$KERNEL_PARAMS rootflags=atgc,gc_merge,noatime,compress_algorithm=zstd:1,compress_cache"
 fi
 
+if [[ "$filesystem" == "ext4" ]]; then
+    KERNEL_PARAMS="$KERNEL_PARAMS rootflags=noatime,lazytime,discard,commit=60,dioread_nolock"
+fi
+
 # Encryption Selection
 echo ""
 echo "Do you want to encrypt the root partition?"
