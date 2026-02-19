@@ -121,7 +121,7 @@ case $filesystem_choice in
 esac
 
 if [[ "$filesystem" == "f2fs" ]]; then
-    KERNEL_PARAMS="$KERNEL_PARAMS rootflags=atgc"
+    KERNEL_PARAMS="$KERNEL_PARAMS rootflags=atgc,gc_merge,noatime,compress_algorithm=zstd:1,compress_cache"
 fi
 
 # Encryption Selection
