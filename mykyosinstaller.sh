@@ -11,7 +11,7 @@ BCACHEFS_MOUNT_OPTIONS="compression=none,background_compression=zstd:7,journal_f
 F2FS_MOUNT_OPTIONS="defaults,noatime,lazytime,discard,flush_merge,mode=adaptive,compress_algorithm=zstd:1,compress_cache"
 F2FS_FORMAT_FEATURES="extra_attr,inode_checksum,sb_checksum,compression"
 EXT4_MOUNT_OPTIONS="noatime,commit=60,barrier=0"
-ENABLE_LUKS_TRIM="yes"
+
 
 # Arch Linux Installation Script - Information Gathering
 lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL
@@ -154,6 +154,10 @@ case $encryption_choice in
     encryption="no"
     ;;
 esac
+
+if [[ "$encryption" == "yes" ]]; then
+    KERNEL_PARAMS="$KERNEL_PARAMS rd.luks.options=discard"
+fi
 
 # Bootloader Selection
 echo ""

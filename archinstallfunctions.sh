@@ -218,9 +218,6 @@ chroot_into_system() {
     print_step "Generating fstab..."
     genfstab -U $INSTALL_POINT >> $INSTALL_POINT/etc/fstab
 
-    # Configure LUKS TRIM if enabled
-    configure_luks_trim
-
     # Chroot into the new system and execute commands
     print_step "Chrooting into the new system at $INSTALL_POINT..."
     arch-chroot $INSTALL_POINT /bin/bash <<EOF
@@ -580,22 +577,3 @@ install_grub_bios() {
 EOF
 }
 
-configure_luks_trim() {
-    if [[ "$encryption" == "yes" && "$ENABLE_LUKS_TRIM" == "yes" ]]; then
-        print_step "Configuring LUKS for TRIM/Discard..."
-        LUKS_UUID=$(blkid -s UUID -o value "$root_partition")
-        if [ -z "$LUKS_UUID" ]; then
-            echo "Error: Could not find LUKS UUID for $root_partition"
-            return 1
-        fi
-
-        # Create crypttab if it doesn't exist
-        if [ ! -f "$INSTALL_POINT/etc/crypttab" ]; then
-            touch "$INSTALL_POINT/etc/crypttab"
-        fi
-
-        # Add entry to crypttab
-        echo "$CRYPTROOT_NAME UUID=$LUKS_UUID none discard" >> "$INSTALL_POINT/etc/crypttab"
-        echo "LUKS TRIM configured in /etc/crypttab."
-    fi
-}
