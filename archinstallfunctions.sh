@@ -1,3 +1,8 @@
+print_step() {
+    local message="$1"
+    echo -e "\n\033[1;32m=> $message\033[0m"
+}
+
 install_configs() {
     print_step "Installing system configurations..."
     # Copy system-wide configurations
