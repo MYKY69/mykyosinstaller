@@ -161,8 +161,14 @@ mount_partitions() {
 }
 
 install_base_system() {
+    # Determine which mesa package to use
+    local mesa_pkg="mesa"
+    if [[ "$pacman_config" == *"V3"* ]] || [[ "$pacman_config" == *"V4"* ]]; then
+        mesa_pkg="mesa-git"
+    fi
+
     # Base packages including the chosen kernel and base-devel
-    base_packages="base base-devel dhcpcd $kernel_package power-profiles-daemon pacman nano git sudo linux-firmware efibootmgr networkmanager bluez bluez-utils htop fastfetch wireplumber git mkinitcpio reflector zsh zsh-theme-powerlevel10k cachyos-rate-mirrors mesa-git"
+    base_packages="base base-devel dhcpcd $kernel_package power-profiles-daemon pacman nano git sudo linux-firmware efibootmgr networkmanager bluez bluez-utils htop fastfetch wireplumber git mkinitcpio reflector zsh zsh-theme-powerlevel10k cachyos-rate-mirrors $mesa_pkg"
 
     # Additional packages based on the chosen filesystem
     case $filesystem in
